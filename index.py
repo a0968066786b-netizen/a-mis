@@ -12,6 +12,7 @@ def index():
     homepage += "<a href=/account>網頁表單傳值</a><hr>"
     homepage += "<a href=/about>我的簡介網頁</a><hr>"
     homepage += "<a href=/welcome?u=子青&dep=靜宜資管>GET傳值</a><hr>"
+    homepage += "<a href=/math>數學運算</a><hr>"
     return homepage
 
 @app.route("/mis")
