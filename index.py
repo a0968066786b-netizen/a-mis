@@ -49,5 +49,32 @@ def account():
     else:
         return render_template("account.html")
 
+@app.route("/math", methods=["GET", "POST"])
+def math():
+    if request.method == "POST":
+        # 取得使用者輸入的數值與運算子
+        try:
+            x = float(request.form.get("x"))
+            y = float(request.form.get("y"))
+            opt = request.form.get("opt")
+            
+            # 進行運算
+            if opt == "+":
+                result = x + y
+            elif opt == "-":
+                result = x - y
+            elif opt == "*":
+                result = x * y
+            elif opt == "/":
+                result = x / y if y != 0 else "除數不能為 0"
+            else:
+                result = "未知運算"
+                
+            return f"<h1>計算結果：{x} {opt} {y} = {result}</h1><a href='/math'>重新計算</a> | <a href='/'>回首頁</a>"
+        except:
+            return "<h1>輸入錯誤，請輸入數字！</h1><a href='/math'>重新嘗試</a>"
+    else:
+        return render_template("math.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
